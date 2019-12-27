@@ -23,4 +23,5 @@ is( $recipes.title, "Tuna risotto", "Gets title OK");
 is( $recipes.description,
         "A relatively simple version of this rich, creamy dish of Italian origin.",
         "Gets description right" );
+ok( $recipes.sections<Ingredients>, "There's an ingredients section");
 done-testing;

@@ -7,18 +7,35 @@ has $.file;
 has $.markdown;
 has $.title;
 has $.description;
+has %.sections;
 
 submethod BUILD( :$!file) {
     $!markdown = parse-markdown-from-file($!file);
-    say $!markdown.perl;
     X::Recipes::Markdown::BadHeader.new.throw
             unless $!markdown.document.items[0] ~~ Text::Markdown::Heading
             and $!markdown.document.items[0].level == 1;
     $!title = $!markdown.document.items[0].text;
     $!description = $!markdown.document.items[1].items.join("");
+    %!sections = extract-sections( $!markdown.document.items );
 }
 
 
+sub extract-sections ( $markdown --> Associative ) {
+    my @chunks = $markdown<>;
+    shift @chunks;
+    shift @chunks;  # Eliminates title and description
+    my %sections;
+    my $current-section;
+    for @chunks -> $c {
+        if  $c ~~ Text::Markdown::Heading {
+            $current-section = $c.text;
+            %sections{$current-section} = [];
+        } else {
+            %sections{$current-section}.push: $c;
+        }
+    }
+    return %sections;
+}
 
 =begin pod
 
