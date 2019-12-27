@@ -1,12 +1,19 @@
-use v6.c;
+use Text::Markdown;
+
 unit class Recipes::Markdown:ver<0.0.1>:auth<cpan:JMERELO>;
 
+has $.file;
+has $.markdown;
+
+submethod BUILD( :$!file) {
+    $!markdown = parse-markdown-from-file($!file);
+}
 
 =begin pod
 
 =head1 NAME
 
-Recipes::Markdown - blah blah blah
+Recipes::Markdown - Semistructured recipes written in Markdown
 
 =head1 SYNOPSIS
 
@@ -18,7 +25,8 @@ use Recipes::Markdown;
 
 =head1 DESCRIPTION
 
-Recipes::Markdown is ...
+Recipes::Markdown is a support library for the Raku Recipes book, which will
+be published by APress.
 
 =head1 AUTHOR
 
