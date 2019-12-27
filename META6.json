@@ -1,0 +1,20 @@
+{
+  "auth" : "cpan:JMERELO",
+  "authors" : [
+    "JJ Merelo"
+  ],
+  "build-depends" : [ ],
+  "depends" : [ ],
+  "description" : "blah blah blah",
+  "license" : "Artistic-2.0",
+  "name" : "Recipes::Markdown",
+  "perl" : "6.c",
+  "provides" : {
+    "Recipes::Markdown" : "lib/Recipes/Markdown.pm6"
+  },
+  "resources" : [ ],
+  "source-url" : "",
+  "tags" : [ ],
+  "test-depends" : [ ],
+  "version" : "0.0.1"
+}
