@@ -6,6 +6,7 @@ unit class Recipes::Markdown:ver<0.0.1>:auth<cpan:JMERELO>;
 has $.file;
 has $.markdown;
 has $.title;
+has $.description;
 
 submethod BUILD( :$!file) {
     $!markdown = parse-markdown-from-file($!file);
@@ -14,6 +15,7 @@ submethod BUILD( :$!file) {
             unless $!markdown.document.items[0] ~~ Text::Markdown::Heading
             and $!markdown.document.items[0].level == 1;
     $!title = $!markdown.document.items[0].text;
+    $!description = $!markdown.document.items[1].items.join("");
 }
 
 

@@ -20,5 +20,7 @@ throws-like { Recipes::Markdown.new( file => "$dir/bad-recipe.md" ) },
         X::Recipes::Markdown::BadHeader, "Throws bad header exception OK";
 
 is( $recipes.title, "Tuna risotto", "Gets title OK");
-
+is( $recipes.description,
+        "A relatively simple version of this rich, creamy dish of Italian origin.",
+        "Gets description right" );
 done-testing;
