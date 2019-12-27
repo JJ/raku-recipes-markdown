@@ -5,7 +5,7 @@ unit class Recipes::Markdown:ver<0.0.1>:auth<cpan:JMERELO>;
 
 has $.file;
 has $.markdown;
-has $.name;
+has $.title;
 
 submethod BUILD( :$!file) {
     $!markdown = parse-markdown-from-file($!file);
@@ -13,7 +13,7 @@ submethod BUILD( :$!file) {
     X::Recipes::Markdown::BadHeader.new.throw
             unless $!markdown.document.items[0] ~~ Text::Markdown::Heading
             and $!markdown.document.items[0].level == 1;
-    $!name = $!markdown.document.items[0];
+    $!title = $!markdown.document.items[0].text;
 }
 
 
