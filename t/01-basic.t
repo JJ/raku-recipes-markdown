@@ -1,18 +1,21 @@
 use v6.c;
 use Test;
 use Recipes::Markdown;
+use X::Recipes::Markdown::BadHeader;
 
-my $test-file;
+my $dir;
 
 if "recipes/tuna-risotto.md".IO.e {
-    $test-file = "recipes/tuna-risotto.md";
+    $dir = "recipes/";
 } else {
-    $test-file = "../recipes/tuna-risotto.md";
+    $dir = "../recipes/";
 }
 
-ok( $test-file, "Found test file");
+ok( $dir, "Found test directory");
 
-my $recipes= Recipes::Markdown.new( file => $test-file );
+my $recipes= Recipes::Markdown.new( file => $dir ~ "tuna-risotto.md" );
 isa-ok( $recipes, Recipes::Markdown, "Class instantiated correctly" );
 
+throws-like { Recipes::Markdown.new( file => "$dir/bad-recipe.md" ) },
+        X::Recipes::Markdown::BadHeader, "Throws bad header exception OK";
 done-testing;

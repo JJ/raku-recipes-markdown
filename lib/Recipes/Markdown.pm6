@@ -1,13 +1,22 @@
 use Text::Markdown;
+use X::Recipes::Markdown::BadHeader;
 
 unit class Recipes::Markdown:ver<0.0.1>:auth<cpan:JMERELO>;
 
 has $.file;
 has $.markdown;
+has $.name;
 
 submethod BUILD( :$!file) {
     $!markdown = parse-markdown-from-file($!file);
+    say $!markdown.perl;
+    X::Recipes::Markdown::BadHeader.new.throw
+            unless $!markdown.document.items[0] ~~ Text::Markdown::Heading
+            and $!markdown.document.items[0].level == 1;
+    $!name = $!markdown.document.items[0];
 }
+
+
 
 =begin pod
 
