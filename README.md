@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.com/JJ/raku-recipes-markdown.svg?branch=master)](https://travis-ci.com/JJ/raku-recipes-markdown)
+
 NAME
 ====
 
-Recipes::Markdown - blah blah blah
+Recipes::Markdown - Semistructured recipes in markdown
 
 SYNOPSIS
 ========
@@ -13,7 +15,8 @@ use Recipes::Markdown;
 DESCRIPTION
 ===========
 
-Recipes::Markdown is ...
+Recipes::Markdown is a support module for the upcoming book Raku Recipes, by
+Apress.
 
 AUTHOR
 ======
